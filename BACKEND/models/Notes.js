@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
 const NotesSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: true,s
   },
   description: {
     type: String,
@@ -20,4 +20,4 @@ const NotesSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("notes", NotesSchema);
