@@ -1,5 +1,6 @@
 var jwt = require("jsonwebtoken");
 const JWT_SECRET = "ILoveSwscho";
+//TO-DO: JWT_SECRET should be a long random string and stored in a .env file
 
 const fetchUser = (req, res, next) => {
   // GET the USER from the JWT-TOKEN and ADD ID to req object

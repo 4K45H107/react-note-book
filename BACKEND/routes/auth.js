@@ -7,6 +7,7 @@ var jwt = require("jsonwebtoken");
 const fetchUser = require("../middleware/fetchUser.js");
 
 const JWT_SECRET = "ILoveSwscho";
+//TO-DO: JWT_SECRET should be a long random string and stored in a .env file
 
 // ROUTE 1: CREATE a USER using: POST: "/api/auth/createuser" (No login required)
 router.post(
