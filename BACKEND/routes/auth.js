@@ -3,7 +3,9 @@ const User = require("../models/User.js");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
+var jwt = require("jsonwebtoken");
 
+const JWT_SECRET = "ILoveSwscgo";
 
 // create a User using: POST "/api/auth". No login required
 router.post(
@@ -40,9 +42,16 @@ router.post(
         name: req.body.name,
         email: req.body.email,
         password: secPass,
-      }).then((user) => {
-        res.json(user);
       });
+
+      // jwt authentication
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      const authToken = jwt.sign(data, JWT_SECRET);
+      res.json({ authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
