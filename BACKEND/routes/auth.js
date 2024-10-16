@@ -8,7 +8,7 @@ const fetchUser = require("../middleware/fetchUser.js");
 
 const JWT_SECRET = "ILoveSwscho";
 
-// ROUTE 1: CREATE a USER using: POST "/api/auth/createuser" (No login required)
+// ROUTE 1: CREATE a USER using: POST: "/api/auth/createuser" (No login required)
 router.post(
   "/createuser", // EXPRESS-VALIDATION
   [
@@ -60,7 +60,7 @@ router.post(
   }
 );
 
-// ROUTE 2: AUTHENTICATE a USER using: POST "/api/auth/login" (No login required)
+// ROUTE 2: AUTHENTICATE a USER using: POST: "/api/auth/login" (No login required)
 router.post(
   "/login", // EXPRESS-VALIDATION
   [
@@ -105,7 +105,7 @@ router.post(
   }
 );
 
-// ROUTE 3: get a LOGGED-IN USER using: POST "/api/auth/getuser" (login required)
+// ROUTE 3: get a LOGGED-IN USER using: POST: "/api/auth/getuser" (login required)
 router.post("/getuser", fetchUser, async (req, res) => {
   try {
     let userId = req.user.id;
