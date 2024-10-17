@@ -4,7 +4,6 @@ import NoteContext from "../context/notes/noteContext";
 
 const Addnotes = () => {
   const context = useContext(NoteContext);
-  // eslint-disable-next-line
   const { addNote } = context;
 
   const [note, setNote] = useState({ title: "", description: "", tag: "" });
@@ -57,7 +56,7 @@ const Addnotes = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary" onClick={handleClick}>
-          Submit
+          Add
         </button>
       </form>
     </div>
