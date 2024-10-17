@@ -1,19 +1,7 @@
-import React, { useContext, useEffect } from "react";
-import NoteContext from "../context/notes/noteContext";
+import React from "react";
 
 const About = () => {
-  const cntx = useContext(NoteContext);
-
-  useEffect(() => {
-    cntx.update();
-    // eslint-disable-next-line
-  }, []);
-
-  return (
-    <div>
-      I am {cntx.state.name} and my age is {cntx.state.age}
-    </div>
-  );
+  return <div>I am About</div>;
 };
 
 export default About;
