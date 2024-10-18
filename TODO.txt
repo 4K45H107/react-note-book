@@ -1,0 +1,6 @@
+[] CLEAN-UP the code
+[] CREATE a homepage
+[] CREATE a aboutpage
+[] CREATE a user details page
+[] MOVE important files to .env folder
+[] LOADING glitch (ask mohaimin)
