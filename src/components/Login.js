@@ -36,7 +36,13 @@ const Login = (props) => {
   };
 
   return (
-    <div className="container my-3">
+    <div
+      className="container"
+      style={{
+        margin: "35px 0px",
+        marginTop: "90px",
+      }}
+    >
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
@@ -50,6 +56,8 @@ const Login = (props) => {
             name="email"
             value={credentials.email}
             onChange={onChange}
+            required
+            minLength={5}
           />
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
@@ -66,6 +74,8 @@ const Login = (props) => {
             value={credentials.password}
             name="password"
             onChange={onChange}
+            required
+            minLength={5}
           />
         </div>
         <button type="submit" className="btn btn-primary">

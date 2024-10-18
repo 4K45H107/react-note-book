@@ -2,7 +2,7 @@ import React from "react";
 import { useContext, useState } from "react";
 import NoteContext from "../context/notes/noteContext";
 
-const Addnotes = () => {
+const Addnotes = (props) => {
   const context = useContext(NoteContext);
   const { addNote } = context;
 
@@ -23,6 +23,7 @@ const Addnotes = () => {
       description: "",
       tag: "",
     });
+    props.showAlert("Note added successfully", "success");
   };
 
   return (
@@ -65,6 +66,7 @@ const Addnotes = () => {
             placeholder="Enter tag"
             value={note.tag}
             onChange={onChange}
+            minLength={1}
             required
           />
         </div>
@@ -72,7 +74,11 @@ const Addnotes = () => {
           type="submit"
           className="btn btn-primary"
           onClick={handleClick}
-          disabled={note.title.length < 3 || note.description.length < 5}
+          disabled={
+            note.title.length < 3 ||
+            note.description.length < 5 ||
+            note.tag.length < 1
+          }
         >
           Add
         </button>

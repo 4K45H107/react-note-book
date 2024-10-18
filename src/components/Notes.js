@@ -43,11 +43,12 @@ const Notes = (props) => {
     refClose.current.click();
     editNote(note.id, note.etitle, note.edescription, note.etag);
     e.preventDefault();
+    props.showAlert("Note updated successfully", "success");
   };
 
   return (
     <div className="row">
-      <Addnotes />
+      <Addnotes showAlert={props.showAlert} />
 
       <button
         type="button"
@@ -117,6 +118,7 @@ const Notes = (props) => {
                     placeholder="Enter tag"
                     value={note.etag}
                     onChange={onChange}
+                    minLength={1}
                     required
                   />
                 </div>
@@ -136,7 +138,9 @@ const Notes = (props) => {
                 className="btn btn-primary"
                 onClick={handleClick}
                 disabled={
-                  note.etitle.length < 3 || note.edescription.length < 5
+                  note.etitle.length < 3 ||
+                  note.edescription.length < 5 ||
+                  note.etag.length < 1
                 }
               >
                 Save
@@ -151,7 +155,14 @@ const Notes = (props) => {
         <div className="container mx-3">No notes to display</div>
       )}
       {notes.map((note) => {
-        return <NoteItem key={note._id} note={note} updateNote={updateNote} />;
+        return (
+          <NoteItem
+            key={note._id}
+            note={note}
+            updateNote={updateNote}
+            showAlert={props.showAlert}
+          />
+        );
       })}
     </div>
   );

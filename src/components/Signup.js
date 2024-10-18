@@ -13,7 +13,9 @@ const Signup = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // TODO: HIDING IMPORTANT ELEMENT TO .ENV FILE
     const url = "http://localhost:5000/api/auth/createuser";
+    // TODO: CONFIRM PASSWORD
     const { name, email, password, confirms } = credentials;
     const response = await fetch(url, {
       method: "POST",
@@ -40,7 +42,13 @@ const Signup = (props) => {
   };
 
   return (
-    <div className="container my-3">
+    <div
+      className="container"
+      style={{
+        margin: "35px 0px",
+        marginTop: "90px",
+      }}
+    >
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -55,6 +63,7 @@ const Signup = (props) => {
             name="name"
             value={credentials.name}
             required
+            minLength={3}
           />
         </div>
         <div className="mb-3">
@@ -70,6 +79,7 @@ const Signup = (props) => {
             name="email"
             value={credentials.email}
             required
+            minLength={11}
           />
         </div>
         <div className="mb-3">
