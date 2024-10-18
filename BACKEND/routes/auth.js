@@ -23,16 +23,19 @@ router.post(
     // ERROR, return BAD-REQUEST and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      success = false;
+      return res.status(400).json({ success, errors: errors.array() });
     }
 
     // user with this "email" ALREADY EXISTS
     try {
       let user = await User.findOne({ email: req.body.email });
       if (user) {
-        return res
-          .status(400)
-          .json({ error: "Sorry a user with this email already exists" });
+        success = false;
+        return res.status(400).json({
+          success,
+          error: "Sorry a user with this email already exists",
+        });
       }
 
       // PASSWORD-HASHING
@@ -53,7 +56,8 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      success = true;
+      res.json({ success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
@@ -72,7 +76,8 @@ router.post(
     // ERROR, return BAD-REQUEST and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      success = false;
+      return res.status(400).json({ success, errors: errors.array() });
     }
 
     const { email, password } = req.body;
@@ -86,9 +91,11 @@ router.post(
 
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
-        return res
-          .status(400)
-          .json({ error: "Please try to login with correct credentials" });
+        success = false;
+        return res.status(400).json({
+          success,
+          error: "Please try to login with correct credentials",
+        });
       }
 
       // JWT-PAYLOAD
@@ -98,7 +105,8 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      success = true;
+      res.json({ success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
@@ -111,7 +119,8 @@ router.post("/getuser", fetchUser, async (req, res) => {
   try {
     let userId = req.user.id;
     const user = await User.findById(userId).select("-password");
-    res.send(user);
+    success = true;
+    res.send({ success, user });
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");

@@ -45,7 +45,15 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+          <form className="d-flex">
+            <Link className="btn btn-light mx-1" to="/login" role="button">
+              Login
+            </Link>
+            <Link className="btn btn-light mx-1" to="/signup" role="button">
+              Signup
+            </Link>
+          </form>
+          {/* <form className="d-flex" role="search">
             <input
               className="form-control me-2"
               type="search"
@@ -55,7 +63,7 @@ const Navbar = () => {
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>

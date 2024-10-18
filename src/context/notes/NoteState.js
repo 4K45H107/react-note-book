@@ -18,8 +18,8 @@ const NoteState = (props) => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcxMDNiYTYwNmVlYTgwZGJhNjI0ODQwIn0sImlhdCI6MTcyOTExNzA5NH0.0i0dhPD_U2tm98mdVNZJ3QSIVqlY63_zCGHxkaeux5k",
       },
     });
-    const json = await response.json();
-    setNotes(json);
+    const notes = await response.json();
+    setNotes(notes);
   };
 
   // ADD A NOTE
@@ -56,14 +56,12 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
 
     let newNotes = notes.filter((note) => note._id !== id);
     setNotes(newNotes);
   };
 
-  // Edit a note
-  //"6710422d88b9586f113f8627"
+  // EDIT A NOTE
   const editNote = async (id, title, description, tag) => {
     // API Call
     const url = `${host}/api/notes/updatenote/${id}`;
@@ -77,7 +75,6 @@ const NoteState = (props) => {
       },
     });
     const json = response.json();
-    console.log(json);
 
     let newNotes = JSON.parse(JSON.stringify(notes));
 

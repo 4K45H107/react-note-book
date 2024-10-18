@@ -18,6 +18,11 @@ const Addnotes = () => {
   const handleClick = (e) => {
     e.preventDefault();
     addNote(note);
+    setNote({
+      title: "",
+      description: "",
+      tag: "",
+    });
   };
 
   return (
@@ -32,7 +37,10 @@ const Addnotes = () => {
             id="title"
             aria-describedby="title-help"
             placeholder="Enter title"
+            value={note.title}
             onChange={onChange}
+            minLength={3}
+            required
           />
         </div>
         <div className="form-group my-3">
@@ -42,7 +50,10 @@ const Addnotes = () => {
             className="form-control"
             id="description"
             placeholder="Enter description"
+            value={note.description}
             onChange={onChange}
+            minLength={5}
+            required
           />
         </div>
         <div className="form-group my-3">
@@ -52,10 +63,17 @@ const Addnotes = () => {
             className="form-control"
             id="tag"
             placeholder="Enter tag"
+            value={note.tag}
             onChange={onChange}
+            required
           />
         </div>
-        <button type="submit" className="btn btn-primary" onClick={handleClick}>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={handleClick}
+          disabled={note.title.length < 3 || note.description.length < 5}
+        >
           Add
         </button>
       </form>
