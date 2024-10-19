@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const mongoURI =
-  "mongodb://localhost:27017/notebook?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
+  "mongodb+srv://fahad11ahmed11:McvRPS1epNkpEeW6@cluster0.khwqi.mongodb.net/";
 
 const connectToMongo = async () => {
   await mongoose
